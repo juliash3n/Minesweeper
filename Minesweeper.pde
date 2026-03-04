@@ -1,8 +1,8 @@
 import de.bezier.guido.*;
 //Declare and initialize constants NUM_ROWS and NUM_COLS = 20
-int NUM_ROWS = 5;
-int NUM_COLS = 5;
-int NUM_MINES = 6;
+int NUM_ROWS = 20;
+int NUM_COLS = 20;
+int NUM_MINES = 10;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList <MSButton>();
 
@@ -105,7 +105,7 @@ public class MSButton
         for(int i = myRow-1; i<myRow+2; i++){
           for(int j = myCol-1; j<myCol+2; j++){
             if(isValid(i,j)==true && countMines(i,j) == 0)
-            buttons[i][j].clicked = true;
+            buttons[i][j].mousePressed();
           }
         }
         
