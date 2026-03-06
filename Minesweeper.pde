@@ -2,7 +2,7 @@ import de.bezier.guido.*;
 //Declare and initialize constants NUM_ROWS and NUM_COLS = 20
 int NUM_ROWS = 20;
 int NUM_COLS = 20;
-int NUM_MINES = 40;
+int NUM_MINES = 50;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList <MSButton>();
 
@@ -41,16 +41,51 @@ public void draw ()
 }
 public boolean isWon()
 {
-    //your code here
-    return false;
+    for(int i=0; i<NUM_ROWS; i++)
+      for(int j = 0; j<NUM_COLS; j++)
+      if(!mines.contains(buttons[i][j]) && buttons[i][j].clicked == false)
+      return false;
+    return true;
+    
 }
 public void displayLosingMessage()
 {
-    //your code here
+    for(int i = 0; i<mines.size(); i++)
+      mines.get(i).clicked = true;
+    buttons[9][7].setLabel("K");
+    buttons[9][8].setLabel("A");
+    buttons[9][9].setLabel("B");
+    buttons[9][10].setLabel("O");
+    buttons[9][11].setLabel("O");
+    buttons[9][12].setLabel("M");
+    
+  
+    buttons[10][6].setLabel("y");
+    buttons[10][7].setLabel("o");
+    buttons[10][8].setLabel("u");
+    buttons[10][9].setLabel(" ");
+    buttons[10][10].setLabel("l");
+    buttons[10][11].setLabel("o");
+    buttons[10][12].setLabel("s");
+    buttons[10][13].setLabel("e");
 }
 public void displayWinningMessage()
 {
-    //your code here
+    buttons[9][7].setLabel("y");
+    buttons[9][8].setLabel("i");
+    buttons[9][9].setLabel("p");
+    buttons[9][10].setLabel("p");
+    buttons[9][11].setLabel("e");
+    buttons[9][12].setLabel("e");
+  
+    buttons[10][6].setLabel("y");
+    buttons[10][7].setLabel("o");
+    buttons[10][8].setLabel("u");
+    buttons[10][9].setLabel(" ");
+    buttons[10][10].setLabel("w");
+    buttons[10][11].setLabel("o");
+    buttons[10][12].setLabel("n");
+    buttons[10][13].setLabel("!");
 }
 public boolean isValid(int r, int c)
 {
@@ -102,11 +137,13 @@ public class MSButton
         else if(countMines(myRow, myCol) > 0)
         myLabel = String.valueOf(countMines(myRow, myCol));
         else
+        if(countMines(myRow, myCol) == 0){
         for(int i = myRow-1; i<myRow+2; i++){
           for(int j = myCol-1; j<myCol+2; j++){
-            if(isValid(i,j)==true
-            buttons[i][j].mousePressed();
+            if(isValid(i,j)==true && buttons[i][j].clicked == false)
+            buttons[i][j].mousePressed ();
           }
+        }
         }
         
     }
